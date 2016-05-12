@@ -1,16 +1,15 @@
 package gomol_loggly
 
 import (
-	gl "."
 	"github.com/aphistic/gomol"
 )
 
 // Code for the README example to make sure it still builds!
 func Example() {
 	// Add a Loggly logger
-	logglyCfg := gl.NewLogglyLoggerConfig()
+	logglyCfg := NewLogglyLoggerConfig()
 	logglyCfg.Token = "1234"
-	logglyLogger, _ := gl.NewLogglyLogger(logglyCfg)
+	logglyLogger, _ := NewLogglyLogger(logglyCfg)
 	gomol.AddLogger(logglyLogger)
 
 	// Set some global attrs that will be added to all
