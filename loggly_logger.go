@@ -2,6 +2,7 @@ package gomol_loggly
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/aphistic/gomol"
 	"github.com/segmentio/go-loggly"
@@ -100,7 +101,7 @@ func (l *LogglyLogger) ShutdownLogger() error {
 	return nil
 }
 
-func (l *LogglyLogger) Logm(level gomol.LogLevel, m map[string]interface{}, msg string) error {
+func (l *LogglyLogger) Logm(timestamp time.Time, level gomol.LogLevel, m map[string]interface{}, msg string) error {
 	lm := l.getMsg(nil, msg)
 	switch level {
 	case gomol.LEVEL_DEBUG:
