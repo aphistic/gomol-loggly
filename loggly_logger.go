@@ -104,15 +104,15 @@ func (l *LogglyLogger) ShutdownLogger() error {
 func (l *LogglyLogger) Logm(timestamp time.Time, level gomol.LogLevel, m map[string]interface{}, msg string) error {
 	lm := l.getMsg(nil, msg)
 	switch level {
-	case gomol.LEVEL_DEBUG:
+	case gomol.LevelDebug:
 		l.getClient().Debug(l.getFacility(nil), lm)
-	case gomol.LEVEL_INFO:
+	case gomol.LevelInfo:
 		l.getClient().Info(l.getFacility(nil), lm)
-	case gomol.LEVEL_WARNING:
+	case gomol.LevelWarning:
 		l.getClient().Warn(l.getFacility(nil), lm)
-	case gomol.LEVEL_ERROR:
+	case gomol.LevelError:
 		l.getClient().Error(l.getFacility(nil), lm)
-	case gomol.LEVEL_FATAL:
+	case gomol.LevelFatal:
 		l.getClient().Critical(l.getFacility(nil), lm)
 	}
 	return nil
