@@ -39,9 +39,9 @@ import (
 
 func main() {
 	// Add a Loggly logger
-	logglyCfg := gl.NewLogglyLoggerConfig()
+	logglyCfg := NewLogglyLoggerConfig()
 	logglyCfg.Token = "1234"
-	logglyLogger, _ := gl.NewLogglyLogger(logglyCfg)
+	logglyLogger, _ := NewLogglyLogger(logglyCfg)
 	gomol.AddLogger(logglyLogger)
 
 	// Set some global attrs that will be added to all
@@ -56,9 +56,10 @@ func main() {
 	// Log some debug messages with message-level attrs
 	// that will be sent only with that message
 	for idx := 1; idx <= 10; idx++ {
-		gomol.Dbgm(map[string]interface{}{
-			"msg_attr1": 4321,
-		}, "Test message %v", idx)
+		gomol.Dbgm(
+			gomol.NewAttrs().
+				SetAttr("msg_attr1", 4321),
+			"Test message %v", idx)
 	}
 }
 

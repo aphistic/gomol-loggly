@@ -51,7 +51,7 @@ func (l *LogglyLogger) getFacility(m map[string]interface{}) string {
 			return fmt.Sprint(facility)
 		}
 	}
-	if facility, ok := l.base.BaseAttrs["facility"]; ok {
+	if facility := l.base.BaseAttrs.GetAttr("facility"); facility != nil {
 		return fmt.Sprint(facility)
 	}
 	return ""
@@ -60,7 +60,7 @@ func (l *LogglyLogger) getFacility(m map[string]interface{}) string {
 func (l *LogglyLogger) getMsg(m map[string]interface{}, msg string, a ...interface{}) loggly.Message {
 	lm := loggly.Message{"message": fmt.Sprintf(msg, a...)}
 
-	for key, val := range l.base.BaseAttrs {
+	for key, val := range l.base.BaseAttrs.Attrs() {
 		lm[key] = val
 	}
 	if m != nil {
